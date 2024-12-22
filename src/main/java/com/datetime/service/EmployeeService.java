@@ -12,6 +12,9 @@ import com.datetime.entity.Employee;
 import com.datetime.mapper.EmployeeMapper;
 import com.datetime.repository.EmployeeRespository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class EmployeeService {
     @Autowired
@@ -20,11 +23,13 @@ public class EmployeeService {
     private EmployeeMapper employeeMapper;
 
     public EmployeeDto.EmployeeResponse saveEmployee(EmployeeDto.EmployeeRequest entity) {
+        log.info("Employee DTO ={}",entity);
         Employee employee = employeeMapper.toEntity(entity);
         employee.setCreatedDate(LocalDateTime.now());
         employee.setUpdatedDate(LocalDateTime.now());
         employee.setId(UUID.randomUUID().toString());
         Employee empObj= employeeRepository.save(employee);
+        log.info("Employee saved successfully={}",empObj);
         return employeeMapper.toDto(empObj);
     }
 

@@ -12,12 +12,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 public interface EmployeeDto {
 
     @Getter
     @Setter
     @Builder
+    @ToString
     @NoArgsConstructor
     @AllArgsConstructor
     class EmployeeRequest{
